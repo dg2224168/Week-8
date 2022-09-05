@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+
+</head>
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script>
+        MyPlugin.install = function (Vue, options) {
+            // 1. add global method or property
+            Vue.myGlobalMethod = function () {
+              // some logic ...
+            }
+          
+            // 2. add a global asset
+            Vue.directive('my-directive', {
+              bind (el, binding, vnode, oldVnode) {
+                // some logic ...
+              }
+             
+            })
+          
+            // 3. inject some component options
+            Vue.mixin({
+              created: function () {
+                // some logic ...
+              },
+              data(){
+                return {
+                  messagePlugins: "Hello fRom Plugins!"
+                }
+              }
+              
+             
+            })
+          
+            // 4. add an instance method
+            Vue.prototype.$myMethod = function (methodOptions) {
+              // some logic ...
+            }
+          }
+
+        Vue.use(MyPlugin)
+        
+        new Vue({
+            el: '#app',
+            data() 
+            {
+                return {
+                    message: "Hello Vue!"
+                }
+            }
+            
+        })
+
+        
+    </script>
+    
+</body>
+</html>
